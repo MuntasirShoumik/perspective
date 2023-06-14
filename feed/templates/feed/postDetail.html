@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Post detail
+{% endblock title %}
+
+
+{% block css_file %}
+<link rel="stylesheet" href="  {% static 'feedstyle.css' %}  ">
+{% endblock css_file %}
+
+{% block body %}
+
+
+{% include 'feed/includes/navbar.html' %}
+
+<section class = "post-detail">
+
+    
+
+    <div class="post-detail-container">
+
+
+        
+    <div class="card border-light cstm-card" >
+        <div class="card-header">
+            <a href="{% url 'profile-details-page' post.account.user_name %}">
+                <h5 class="card-title"> {{post.account}}</h5> 
+           </a>
+        </div>
+        
+        
+        <div class="card-body">
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text"><small class="text-muted">Last updated {{post.date_time}}</small></p>
+          <img src="{{post.image_name.url}}" class="card-img-top" alt="...">
+          <p class="card-text">{{post.content | linebreaks}}</p>
+          
+          
+        </div>
+        
+      </div>
+<hr>
+
+        <div class = "add-comment">
+
+            <h4>Add a comment:</h3>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button class="btn btn-outline-primary" type="submit" formnovalidate> Comment </button>
+            </form>
+        </div>
+<hr>
+
+
+
+        <div class = "all-comment">
+        
+
+            <h4 class="cmnt-h5">All a comments:</h3>
+            {% for comment in comments %}
+            <div class="card cstm-comments">
+                <div class="card-header">
+                    <a href="{% url 'profile-details-page' comment.account.user_name %}">{{comment.account}}</a>
+                    <footer class="blockquote-footer">{{comment.date}}</footer>
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote mb-0">
+                    
+                    <p>{{comment.comment}}</p>
+                    
+                  </blockquote>
+                </div>
+              </div>
+
+
+
+            
+        
+            {% endfor %}
+        </div>
+    </div>
+
+</section>
+
+{% endblock body %}

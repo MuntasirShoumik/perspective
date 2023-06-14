@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block css_file %}
+{% comment %} <link rel="stylesheet" href="  {% static 'feedstyle.css' %}  "> {% endcomment %}
+{% endblock css_file %}
+
+{% block body %}
+
+<section class = "profile-details">
+
+    <div class="profile-details-container">
+        <div class="profile-img">
+
+            {% comment %} <img src="{{ profile.profile_image.url}}" alt="" srcset=""> {% endcomment %}
+        </div>
+        <div class="about">
+
+            <div>
+                {{profile.first_name}}
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class = "profile-posts">
+
+    <div class="profile-posts-container">
+
+        {% for post in posts %}
+        
+        <div class = "post-title">
+            {{post.title}}
+        </div>
+        <div class = "post-date">
+
+            {{post.date_time}}
+        </div>
+        <div class = "post-excerpt">
+
+            <a href="{% url 'post-detail-page' post.slug %}">
+
+                {{post.excerpt}}
+            </a>
+        </div>
+        <div class ="post-img">
+
+            <img src="{{post.image_name.url}}" alt="" srcset="">
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+{% endblock body %}
+
+

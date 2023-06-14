@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Feed {% endblock title %}
+
+{% block css_file %}
+
+<link rel="stylesheet" href="  {% static 'feedstyle.css' %}  ">
+{% endblock css_file %}
+
+
+
+{% block body %} 
+
+
+
+
+{% include 'feed/includes/navbar.html' %}
+
+
+<p>Wellcome {{username}}</p>
+
+
+<div class="add-post">
+    <h3>Some thing on your mind ? </h3>
+    <a href="{% url 'add-post-page' %}">
+        <button type="button" class="btn btn-outline-primary">Create a Post</button>
+    </a>
+</div>
+
+
+
+
+<section class = "post">
+   
+    {% for post in posts %}
+ <div class="post-container">
+
+
+    <div class="card border-light cstm-card" >
+        <div class="card-header">
+            <a href="{% url 'profile-details-page' post.account.user_name %}">
+                <h5 class="card-title"> {{post.account}}</h5> 
+           </a>
+        </div>
+        
+        
+        <div class="card-body">
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text"><small class="text-muted">Last updated {{post.date_time}}</small></p>
+          <p class="card-text">{{post.excerpt}}</p>
+          <img src="{{post.image_name.url}}" class="card-img-top" alt="...">
+          
+        </div>
+        <a href="{% url 'post-detail-page' post.slug %}" class="btn btn-outline-primary">Read Full</a>
+      </div>
+    
+{% comment %}     
+    <div class = "post-card">
+        <div class = "post-author">
+            <a href="{% url 'profile-details-page' post.account.user_name %}">
+
+                {{post.account}}
+            </a>
+        </div>
+        <div class = "post-title">
+            {{post.title}}
+        </div>
+        <div class = "post-date">
+
+            {{post.date_time}}
+        </div>
+        <div class = "post-excerpt">
+
+            <a href="{% url 'post-detail-page' post.slug %}">
+
+                {{post.excerpt}}
+            </a>
+        </div>
+        <div class ="post-img">
+
+            <img src="{{post.image_name.url}}" alt="" srcset="">
+        </div>
+    </div>
+    
+     {% endcomment %}
+
+ </div>
+ {% endfor %}
+
+
+    
+</section>
+
+
+
+{% endblock body %}
+

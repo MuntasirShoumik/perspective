@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Feed {% endblock title %}
+
+{% block css_file %}
+<link rel="stylesheet" href="  {% static 'feedstyle.css' %}  ">
+{% endblock css_file %}
+
+
+
+{% block body %} 
+
+{% include 'feed/includes/navbar.html' %}
+
+<section class = "all-post">
+   
+ <div class="row row-cols-1 row-cols-md-3 g-4 cstm-all-post">
+
+    {% for post in posts %}
+    
+    <div class="col">
+
+        <div class="card h-100 ">
+            <img src="{{post.image_name.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text"><small class="text-muted">Last updated {{post.date_time}}</small></p>
+                <p class="card-text">{{post.excerpt}}</p>
+                <a href="{% url 'post-detail-page' post.slug %}" class="btn btn-primary">Read Full</a>
+            </div>
+          </div>
+    </div>
+
+    {% endfor %}
+
+ </div>   
+    {% comment %} {% for post in posts %}
+ <div class="all-post-container">
+
+
+
+
+
+    
+
+    <div class = "post-card">
+        <div class = "post-author">
+            <a href="{% url 'profile-details-page' post.account.user_name %}">
+
+                {{post.account}}
+            </a>
+        </div>
+        <div class = "post-title">
+            {{post.title}}
+        </div>
+        <div class = "post-date">
+
+            {{post.date_time}}
+        </div>
+        <div class = "post-excerpt">
+
+            <a href="{% url 'post-detail-page' post.slug %}">
+
+                {{post.excerpt}}
+            </a>
+        </div>
+        <div class ="post-img">
+
+            <img src="{{post.image_name.url}}" alt="" srcset="">
+        </div>
+    </div> 
+    
+    
+
+ </div>
+ {% endfor %} {% endcomment %}
+
+
+    
+</section>
+
+{% endblock body %} 

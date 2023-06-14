@@ -1,0 +1,79 @@
+
+/* font-family: 'Fira Sans', sans-serif;
+font-family: 'Ubuntu', sans-serif; */
+
+
+
+
+
+/* post section */
+
+.add-post{
+    margin-top: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+    
+}
+.add-post a{
+    margin-left: 10px;
+}
+
+
+
+
+
+.create-Post-container{
+
+    margin-top: 100px;
+}
+
+
+/*post container*/
+
+
+.cstm-card{
+    margin: 5% 15%;
+    
+    
+}
+
+
+/* post detail */
+
+.post-detail-container{
+    margin-top: 7%;
+}
+
+.add-comment{
+    padding: 2% 5%;
+}
+.add-comment h5{
+    margin-bottom: 5%;
+}
+
+.cstm-comments{
+
+    padding: 2% 5%;
+
+}
+.cmnt-h5{
+
+    margin-left: 5%;
+
+}
+
+
+/* explore */
+
+.cstm-all-post{
+    margin: 10% 5%;
+}
+
+/*create post*/
+
+.create-Post-container{
+    margin: 10% 5%;
+}

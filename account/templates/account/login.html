@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+login
+{% endblock title %}
+
+{% block body %}
+
+
+<section class = "login">
+
+    <div class = "form-container">
+        <form action="" method="post">
+
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" formnovalidate> Login </button>
+
+        </form>
+
+        <div>
+            {{error}}
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock body %}
