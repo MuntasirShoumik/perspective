@@ -18,7 +18,7 @@ class Post(models.Model):
     slug = models.SlugField(unique=True, db_index=True)
     content = models.TextField(validators=[MinLengthValidator(10)])
     account = models.ForeignKey(Account, on_delete=models.CASCADE,related_name="posts")
-    tags = models.ManyToManyField(Category)
+    tags = models.ManyToManyField(Category,related_name="tags")
 
     def __str__(self):
         return self.title

@@ -34,6 +34,9 @@ Post detail
         
         <div class="card-body">
           <h5 class="card-title">{{post.title}}</h5>
+          {% for tag in post.tags.all %}
+            <a href="" class = "btn btn-secondary btn-sm py-0" style="font-size: 0.7em; " disabled>{{tag}}</a>
+            {% endfor %}
           <p class="card-text"><small class="text-muted">Last updated {{post.date_time}}</small></p>
           <img src="{{post.image_name.url}}" class="card-img-top" alt="...">
           <p class="card-text">{{post.content | linebreaks}}</p>
