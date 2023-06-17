@@ -30,6 +30,13 @@ font-family: 'Ubuntu', sans-serif; */
     margin-top: 100px;
 }
 
+.profile-rc{
+    display: flex;
+    
+}
+.profile-rc h5{
+    margin: 10px;
+}
 
 /*post container*/
 

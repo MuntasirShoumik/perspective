@@ -51,7 +51,7 @@ def Login(request):
                     request.session['username'] = userName
                     return HttpResponseRedirect("/")
                 else:
-                    error = "Wrong User Name Or Password"
+                    error = "Wrong User Name Or Password !"
             except:
                 print("cant login!")    
 

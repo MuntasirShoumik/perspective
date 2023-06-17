@@ -39,7 +39,8 @@
 
     <div class="card border-light cstm-card" >
         <div class="card-header">
-            <a href="{% url 'profile-details-page' post.account.user_name %}">
+            <a href="{% url 'profile-details-page' post.account.user_name %}" class="profile-rc">
+                <img src="{{post.account.profile_image.url}}" width="40" height="40" class="rounded-circle">
                 <h5 class="card-title"> {{post.account}}</h5> 
            </a>
         </div>

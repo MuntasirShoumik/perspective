@@ -14,9 +14,11 @@ def index(request):
         username = request.session['username']
 
         posts = Post.objects.all()
+        account = Account.objects.get(user_name=username)
         return render(request,"feed/index.html",{
             "username":username,
-            "posts":posts
+            "posts":posts,
+            "account": account
         })
     
     else:
@@ -24,11 +26,12 @@ def index(request):
 
 def add_post(request):
     if request.session.has_key('username'):
+        account = Account.objects.get(user_name=request.session['username'])
         if request.method == "POST":
             form = PostForm(request.POST)
             if form.is_valid():
                 data = form.cleaned_data
-                account = Account.objects.get(user_name = request.session['username'])
+                
                 post = Post(title = data['title'],excerpt=data['excerpt'],image_name=request.FILES["image"]
                         ,content=data['content'],account=account,slug = slugify(data['title']))
                 post.save()
@@ -43,7 +46,8 @@ def add_post(request):
             form = PostForm()
 
         return render(request,"feed/createPost.html",{
-            "form": form
+            "form": form,
+            "account": account
         })     
     
     else:
@@ -53,12 +57,13 @@ def add_post(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post,slug = slug)
+    account = Account.objects.get(user_name = request.session['username'])
     comments = Comment.objects.filter( post = post)
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            account = Account.objects.get(user_name = request.session['username'])
+            
             comment = Comment(post=post,comment=data['comment'],account=account)
             comment.save()
     else:
@@ -70,16 +75,19 @@ def post_detail(request, slug):
         "post": post,
         "tags": post.tags.all,
         "form": form,
-        "comments": comments
+        "comments": comments,
+        "account": account
     })
 
 
 def explore(request):
 
     posts = Post.objects.all()
+    account = Account.objects.get(user_name = request.session['username'])
     return render(request,"feed/explore.html",{
         
-        "posts":posts
+        "posts":posts,
+        "account": account
     })
 
     

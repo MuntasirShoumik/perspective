@@ -38,47 +38,6 @@
     {% endfor %}
 
  </div>   
-    {% comment %} {% for post in posts %}
- <div class="all-post-container">
-
-
-
-
-
-    
-
-    <div class = "post-card">
-        <div class = "post-author">
-            <a href="{% url 'profile-details-page' post.account.user_name %}">
-
-                {{post.account}}
-            </a>
-        </div>
-        <div class = "post-title">
-            {{post.title}}
-        </div>
-        <div class = "post-date">
-
-            {{post.date_time}}
-        </div>
-        <div class = "post-excerpt">
-
-            <a href="{% url 'post-detail-page' post.slug %}">
-
-                {{post.excerpt}}
-            </a>
-        </div>
-        <div class ="post-img">
-
-            <img src="{{post.image_name.url}}" alt="" srcset="">
-        </div>
-    </div> 
-    
-    
-
- </div>
- {% endfor %} {% endcomment %}
-
 
     
 </section>
