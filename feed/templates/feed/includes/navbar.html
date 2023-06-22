@@ -34,9 +34,9 @@
               <img src="{{account.profile_image.url}}" width="40" height="40" class="rounded-circle">
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Dashboard</a>
-              <a class="dropdown-item" href="#">Edit Profile</a>
-              <a class="dropdown-item" href="#">Log Out</a>
+              <a class="dropdown-item" href="{% url 'account-index-page' %}">Profile</a>
+              <a class="dropdown-item" href="">Edit Profile</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
             </div>
           </li>   
         </ul>

@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import PasswordInput
 from .models import Account
 from django.core.validators import *
 import re
@@ -30,21 +31,23 @@ class RegistrationForm(forms.ModelForm):
         if not bool(re.search(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$', val)):
             raise forms.ValidationError("minimum 8 characters in length, At least one uppercase English letter, At least one lowercase English letter, At least one digit, At least one special character!")
          
+    
 
     first_name = forms.CharField(max_length=20, validators=[name_check],label="First name")
     last_name = forms.CharField(max_length=20,validators=[name_check],label="Last name")
     user_name = forms.CharField(max_length=20,label="User name",validators=[uname_check])
     email = forms.EmailField(validators=[EmailValidator,email_check], label="Email")
     profile_image = forms.ImageField(label="Upload Profile",required=False)
-    password = forms.CharField(validators=[pass_check],label="Password")
+    password = forms.CharField(widget=forms.PasswordInput,validators=[pass_check],label="Password")
 
 
 def if_exist(uname,password):
     if not Account.objects.filter(user_name = uname,password = password).exists():
         raise forms.ValidationError("Wrong User Name Or Password")
 
+   
 
 class LoginForm(forms.Form):
     user_name = forms.CharField()
-    password = forms.CharField()
+    password = forms.CharField(widget=PasswordInput())
     

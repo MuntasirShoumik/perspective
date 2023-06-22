@@ -7,5 +7,6 @@ urlpatterns = [
     path("addPost/",views.add_post,name="add-post-page"),
     path("post/<slug:slug>",views.post_detail,name="post-detail-page"),
     path("explore/",views.explore,name="explore-page"),
+    path("prifile/<slug:slug>",views.profile,name="profile-details-page")
 
 ]

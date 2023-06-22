@@ -7,6 +7,8 @@ urlpatterns = [
     path("create/thank_you/",views.thank_you, name="thank_you-page"),
     path("login/",views.Login, name="login-page"),
     path("logout/",views.logout, name="logout"),
-    path("prifile/<slug:slug>",views.profile,name="profile-details-page")
+    path("edit_post/<slug:slug>",views.editPost, name="post-edit-page"),
+    path("update_account/",views.updateAccount, name="update-account-page"),
+    
 
 ]
